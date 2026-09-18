@@ -14,7 +14,115 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          client_name: string
+          created_at: string
+          id: string
+          message: string | null
+          needs: string
+          requested_date: string
+          service_id: string
+          status: string
+        }
+        Insert: {
+          client_name: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          needs: string
+          requested_date: string
+          service_id: string
+          status?: string
+        }
+        Update: {
+          client_name?: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          needs?: string
+          requested_date?: string
+          service_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creators: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          tagline: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          tagline?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          tagline?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          category: string
+          created_at: string
+          creator_id: string
+          deliverables: string | null
+          delivery_days: number
+          description: string
+          id: string
+          rate: number
+          rate_unit: string
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          creator_id: string
+          deliverables?: string | null
+          delivery_days?: number
+          description: string
+          id?: string
+          rate: number
+          rate_unit?: string
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          creator_id?: string
+          deliverables?: string | null
+          delivery_days?: number
+          description?: string
+          id?: string
+          rate?: number
+          rate_unit?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
