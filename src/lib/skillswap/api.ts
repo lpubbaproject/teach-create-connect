@@ -48,7 +48,7 @@ export async function createBooking(input: {
 }) {
   const { data, error } = await supabase
     .from("bookings")
-    .insert({ ...input, status: "pending" })
+    .insert({ ...input, message: input.message ?? null, status: "pending" })
     .select(BOOKING_SELECT)
     .single();
   if (error) throw error;
