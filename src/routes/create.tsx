@@ -52,7 +52,10 @@ function CreateServicePage() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.category) return toast.error("Please choose a category.");
+    if (!form.category) {
+      toast.error("Please choose a category.");
+      return;
+    }
     mutation.mutate({
       creator_name: form.creator_name.trim(),
       title: form.title.trim(),

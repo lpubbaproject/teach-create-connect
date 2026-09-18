@@ -44,7 +44,7 @@ export async function createBooking(input: {
   client_name: string;
   requested_date: string;
   needs: string;
-  message?: string;
+  message?: string | undefined;
 }) {
   const { data, error } = await supabase
     .from("bookings")
@@ -66,7 +66,7 @@ export async function createService(input: {
   category: string;
   rate: number;
   description: string;
-  deliverables?: string;
+  deliverables?: string | undefined;
 }) {
   // Reuse an existing creator with the same name, otherwise create one.
   const { data: existing } = await supabase
